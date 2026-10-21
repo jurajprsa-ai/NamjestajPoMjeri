@@ -26,7 +26,7 @@ export default function KuhinjaNovi() {
     return (
         <>
             <h3>
-                Unos novog kuhinje
+                Unos nove kuhinje
             </h3>
 
             <Form onSubmit={odradiSubmit}>
@@ -35,9 +35,15 @@ export default function KuhinjaNovi() {
                     <Form.Control type="text" name="naziv" required />
                 </Form.Group>
 
-                {/* dodati preostala svojstva */}
+                <Form.Group controlId="oblik">
+                    <Form.Label>Oblik</Form.Label>
+                    <Form.Control type="text" name="oblik" required />
+                </Form.Group>
 
-            
+
+           
+                
+                {/* dodati preostala svojstva */}
 
                 <Row className="mt-4">
                     <Col>
