@@ -51,9 +51,28 @@ export default function KuhinjaPromjena() {
                     defaultValue={kuhinja.naziv}/>
                 </Form.Group>
 
-                
-                     {/* dodati preostala svojstva */}
-            
+          {/* dodati preostala svojstva */}
+
+                <Form.Group controlId="oblik">
+                    <Form.Label>Oblik</Form.Label>
+                    <Form.Control type="text" name="oblik" required 
+                    defaultValue={kuhinja.oblik}/>
+                </Form.Group>
+
+                <Form.Group controlId="datumUgradnje">
+                    <Form.Label>datumUgradnje</Form.Label>
+                    <Form.Control type="text" name="datumUgradnje" required 
+                    defaultValue={kuhinja.datumUgradnje}/>
+                </Form.Group>
+
+                <Form.Group controlId="sank" className="mt-3">
+                    <Form.Check label="sank" name="sank" 
+                    checked={sank} 
+                    onChange={(e)=>{setSank(e.target.checked)}}/>
+                </Form.Group>
+
+
+
 
                 <Row className="mt-4">
                     <Col>

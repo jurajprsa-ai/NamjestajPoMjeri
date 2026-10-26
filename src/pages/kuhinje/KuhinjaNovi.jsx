@@ -20,6 +20,10 @@ export default function KuhinjaNovi() {
         dodaj({
             naziv: podaci.get('naziv'),
             // završiti
+            oblik: podaci.get('oblik'),
+            cijena: parseFloat(podaci.get('cijena')),
+            datumUgradnje: new Date(podaci.get('datumUgradnje')).toISOString(),
+            sank: podaci.get('sank') === 'on'
         })
     }
 
@@ -34,17 +38,24 @@ export default function KuhinjaNovi() {
                     <Form.Label>Naziv</Form.Label>
                     <Form.Control type="text" name="naziv" required />
                 </Form.Group>
-
+{/* dodati preostala svojstva */}
                 <Form.Group controlId="oblik">
                     <Form.Label>Oblik</Form.Label>
                     <Form.Control type="text" name="oblik" required />
                 </Form.Group>
-
-
-           
+                <Form.Group controlId="cijena">
+                    <Form.Label>Cijena</Form.Label>
+                    <Form.Control type="text" name="cijena" required />
+                </Form.Group>
+                <Form.Group controlId="datumUgradnje">
+                    <Form.Label>Datum Ugradnje</Form.Label>
+                    <Form.Control type="date" name="datumUgradnje" required />
+                </Form.Group>
+                <Form.Group controlId="sank">
+                   <Form.Check label="Šank" name="sank" />
+                </Form.Group>
                 
-                {/* dodati preostala svojstva */}
-
+                
                 <Row className="mt-4">
                     <Col>
                         <Link to={RouteNames.KUHINJE} className="btn btn-danger">
