@@ -10,6 +10,7 @@ export default function KuhinjaPromjena() {
     const navigate = useNavigate()
     const params = useParams()
     const [kuhinja, setKuhinja] = useState({})
+    const [sank, setSank] = useState(false)
 
     useEffect(()=>{
         ucitajKuhinja()
@@ -19,13 +20,14 @@ export default function KuhinjaPromjena() {
         await KuhinjaService.getBySifra(params.sifra).then((odgovor)=>{
             const s = odgovor.data
             setKuhinja(s)
+            setSank(s.sank)
         })
     }
     
 
     async function promijeni(kuhinja) {
         await KuhinjaService.promijeni(params.sifra, kuhinja).then(()=>{
-            navigate(RouteNames.SMJEROVI)
+            navigate(RouteNames.KUHINJE)
         })
     }
 
@@ -34,7 +36,11 @@ export default function KuhinjaPromjena() {
         const podaci = new FormData(e.target)
         promijeni({
             naziv: podaci.get('naziv'),
-            // dodati kasnije
+            // završiti
+            oblik: podaci.get('oblik'),
+            cijena: parseFloat(podaci.get('cijena')),
+            datumUgradnje: new Date(podaci.get('datumUgradnje')).toISOString(),
+            sank: sank
         })
     }
 
@@ -57,6 +63,12 @@ export default function KuhinjaPromjena() {
                     <Form.Label>Oblik</Form.Label>
                     <Form.Control type="text" name="oblik" required 
                     defaultValue={kuhinja.oblik}/>
+                </Form.Group>
+
+                <Form.Group controlId="cijena">
+                    <Form.Label>Cijena</Form.Label>
+                    <Form.Control type="text" name="cijena" required
+                    defaultValue={kuhinja.cijena} />
                 </Form.Group>
 
                 <Form.Group controlId="datumUgradnje">
